@@ -193,6 +193,15 @@ def chatbot_response(message):
     elif msg == "w":
         return mood_based_reply("absolute cinema")
 
+
+    elif msg.startswith("count to "):
+        try:
+            num = int(msg.replace("count to ", "").strip())
+            # Generate the list of numbers
+            count_list = ", ".join(str(i) for i in range(1, num + 1))
+            return mood_based_reply(count_list)
+        except ValueError:
+            return mood_based_reply("I couldn't understand that number. Please try again.")
     # Fallback
     else:
         reply = random.choice(fallbacks)
